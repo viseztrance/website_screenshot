@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+require "website_screenshot"
+
+options = {}
+
+ARGV.options do |opt|
+  script_name = File.basename($0)
+
+  opt.set_summary_indent("  ")
+  opt.banner = "Usage: #{script_name} [options]"
+  opt.define_head "Takes screenshots of webpages."
+
+  opt.separator ""
+
+  opt.on("-u", "--url=val", String,
+         "Website url, eg. http://google.com") { |options[:url]| }
+  opt.on("-s", "--size=val", String,
+         "Window size, eg. 1024x768") { |options[:size]| }
+  opt.on("-f", "--file=val", String,
+         "Image file name for the saved output. Can also be a path.") { |options[:file_name]| }
+  opt.on("-v", "--verbose=val", String,
+         "Display progress during loading.") { |options[:verbose]| }
+  opt.on("-t", "--timeout=val", Integer,
+         "Timeout before killing the page.") { |options[:render_timeout]| }
+
+  opt.separator ""
+
+  opt.on_tail("-h", "--help", "Show this help message.") { puts opt; exit }
+
+  opt.parse!
+
+  if options[:url].nil?
+    puts "The url option is required (-url). -h for additional information."
+  else
+    screenshot = WebsiteScreenshot.new options
+    puts screenshot.get
+  end
+
+end

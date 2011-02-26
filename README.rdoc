@@ -1,0 +1,53 @@
+= Website Screenshot
+
+Creates a new webkit window using the QT framework of a specified url and saves a screenshot when the page has finished loading.
+
+
+== Usage
+
+From ruby:
+
+  ws = WebsiteScreenshot.new :url => "http://google.com"
+  ws.get
+
+Check the docs for additional options.
+
+Command line:
+
+  $ website-screenshot -u http://google.com
+
+You'll probably want to use this library on a webserver. You can easily do so without installing the full X stack by launching it using xvfb:
+
+  $ xvfb-run --server-args="-screen 0, 1400x900x24" --size=1400x900 --url=http://viseztrance.com --file=vise.png
+
+
+== Flash and other plugins
+
+If flash or any other plugin is installed it will be used while redering the page. Locations can be set with environment variables such as $QTWEBKIT_PLUGIN_PATH.
+
+
+== Limitations
+
+Webkit segfaults on rare occasions killing the entire ruby process with it - that's why I encourage calling the script from the command line.
+
+The basic qt webkit browser doesn't handle multiple redirects very well, for this reason the +url+ is initially discovered using _curl_. Feel free to fork this and get around the limitation.
+
+
+== Source code
+
+The source code is hosted on Github: http://github.com/viseztrance/website_screenshot
+
+To get WebsiteScreenshot from source:
+
+  git clone git@github.com:viseztrance/website_screenshot.git
+
+
+== Aknowledgements and implementations
+
+This code is the heart of a pet project I wrote in my spare time named {mywebsit.es}[http://mywebsit.es].
+
+
+== License
+
+This package is licensed under the MIT license and/or the Creative
+Commons Attribution-ShareAlike.
