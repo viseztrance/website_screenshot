@@ -23,14 +23,14 @@ You'll probably want to use this library on a webserver. You can easily do so wi
 
 == Flash and other plugins
 
-If flash or any other plugin is installed it will be used while redering the page. Locations can be set with environment variables such as $QTWEBKIT_PLUGIN_PATH.
+If flash or any other plugin is installed it will be used while rendering the page. Locations can be set with environment variables such as $QTWEBKIT_PLUGIN_PATH.
 
 
 == Limitations
 
 Webkit segfaults on rare occasions killing the entire ruby process with it - that's why I encourage calling the script from the command line.
 
-The basic qt webkit browser doesn't handle multiple redirects very well, for this reason the +url+ is initially discovered using _curl_. Feel free to fork this and get around the limitation.
+The basic qt webkit browser doesn't handle multiple redirects very well, for this reason the _url_ is initially discovered using _curl_. Feel free to fork this and get around the limitation.
 
 
 == Source code
@@ -45,6 +45,8 @@ To get WebsiteScreenshot from source:
 == Aknowledgements and implementations
 
 This code is the heart of a pet project I wrote in my spare time named {mywebsit.es}[http://mywebsit.es].
+
+I also wrote a {web service}[http://github.com/viseztrance/website_screenshot_service] which I hope is a good starting point to anyone who implements this code.
 
 
 == License

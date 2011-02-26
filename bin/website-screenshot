@@ -32,7 +32,7 @@ ARGV.options do |opt|
   opt.parse!
 
   if options[:url].nil?
-    puts "The url option is required (-url). -h for additional information."
+    puts "The url option is required (--url). -h for additional information."
   else
     screenshot = WebsiteScreenshot.new options
     puts screenshot.get
