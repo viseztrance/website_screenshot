@@ -34,6 +34,7 @@ class WebsiteScreenshot
 
   attr_accessor :verbose #:nodoc:
   
+  # Resize image after capture
   attr_accessor :image_resize
 
   # Instantiates a new object.
@@ -44,14 +45,15 @@ class WebsiteScreenshot
   # [*check_loading_status_interval*] Interval between page status checks.
   # [*size*] Window size the page is being rendered into. Defaults at 1360x768.
   # [*verbose*] Outputs page load progress.
+  # [*image_resize*] Resizes the image after capture.
   def initialize(args)
     self.render_timeout                = args[:render_timeout] || 120
     self.check_loading_status_interval = args[:check_loading_status_interval] || 0.1
+    self.url                           = args[:url]
     self.file_name                     = args[:file_name] || "output.png"
     self.size                          = args[:size] || "1024x768"
-    self.url                           = args[:url]
     self.verbose                       = args[:verbose] # default FALSE
-    self.image_resize                  = args[:image_resize] || "20%"
+    self.image_resize                  = args[:image_resize] || "100%"
   end
 
   # Renders the website and saves a screenshot.
@@ -150,9 +152,9 @@ class WebsiteScreenshot
     sleep(5) # Wait a few seconds to allow some/any of the animations to take place
     pixmap = Qt::Pixmap.grabWindow(webview.window.winId)
     pixmap.save(file_name, File.extname(file_name).tr(".",""))
-    image = MiniMagick::Image.open("output.png")
+    image = MiniMagick::Image.open(file_name)
     image.resize(image_resize)
-    image.write "output.png"
+    image.write(file_name)
   end
 
 end
