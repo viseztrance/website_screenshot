@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "rubygems"
 require "optparse"
 require "website_screenshot"
 
@@ -24,6 +25,8 @@ ARGV.options do |opt|
          "Display progress during loading.") { |options[:verbose]| }
   opt.on("-t", "--timeout=val", Integer,
          "Timeout before killing the page.") { |options[:render_timeout]| }
+  opt.on("-r", "--resize=val", String,
+          "Resize image after capture.") { |options[:image_resize]| }
 
   opt.separator ""
 
