@@ -44,7 +44,7 @@ class WebsiteScreenshot
     self.render_timeout                = args[:render_timeout] || 120
     self.check_loading_status_interval = args[:check_loading_status_interval] || 0.1
     self.file_name                     = args[:file_name] || "output.png"
-    self.size                          = args[:size] || "1360x768"
+    self.size                          = args[:size] || "200x150"
     self.url                           = args[:url]
     self.verbose                       = args[:verbose] # default FALSE
   end
